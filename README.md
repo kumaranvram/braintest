@@ -1,0 +1,1 @@
+This is a application to test how fast a person thinks. 
