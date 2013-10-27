@@ -1,0 +1,41 @@
+[
+	{
+		"question": {
+			"text": "2 + 2 ="
+		},
+		"answerLeft": {
+			"text": "3"
+		},
+		"answerRight": {
+			"text": "4",
+			"answer": "true"
+		},
+		"timeout": "5",
+	},
+	{
+		"question": {
+			"text": "how much wood can a wood chucker chuck if a wood chucker can chuck wood?"
+		},
+		"answerLeft": {
+			"text": "I have no clue",
+			"answer": "true"
+		},
+		"answerRight": {
+			"text": "4",
+		},
+		"timeout": "10",
+	},
+	{
+		"question": {
+			"text": "2 + 3 ="
+		},
+		"answerLeft": {
+			"text": "2"
+		},
+		"answerRight": {
+			"text": "5",
+			"answer": "true"
+		},
+		"timeout": "5",
+	}
+]

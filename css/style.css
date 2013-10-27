@@ -1,0 +1,23 @@
+#question{
+	height: 400px;
+	width: 800px;
+	text-align: center;
+	border: 1px solid;
+	font-size: larger;
+}
+
+#answerLeft {
+	height: 200px;
+	width: 200px;
+	left: 200px;
+	border: 1px solid;
+	font-size: large;
+}
+
+#answerRight {
+	height: 200px;
+	width: 200px;
+	left: 500px;
+	border: 1px solid;
+	font-size: large;
+}
