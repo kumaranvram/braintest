@@ -57,20 +57,22 @@ var nextQuestion = function() {
 
 var setCurrentQuestionAndAnswerContents = function() {
 	$('#question').empty();
+	$('#answerLeft').empty();
+	$('#answerRight').empty();
 	if(currentQuestion.question.text) {		
-		$('#question').text( currentQuestion.question.text);
+		$('#question').prepend( currentQuestion.question.text);
 	} else {
 		$('#question').prepend('<img id="questionImage" src="../images/"'+ currentQuestion.question.image +'" />');
 	}
 
 	if(currentQuestion.answerLeft.text) {		
-		$('#answerLeft').text( currentQuestion.answerLeft.text);
+		$('#answerLeft').prepend( currentQuestion.answerLeft.text);
 	} else {
 		$('#answerLeft').prepend('<img id="answerLeftImage" src="../images/"'+ currentQuestion.answerLeft.image +'" />');
 	}
 
 	if(currentQuestion.answerRight.text) {		
-		$('#answerRight').text( currentQuestion.answerRight.text);
+		$('#answerRight').prepend ( currentQuestion.answerRight.text);
 	} else {
 		$('#answerRight').prepend('<img id="answerRightImage" src="../images/"'+ currentQuestion.answerRight.image +'" />');
 	}
@@ -146,7 +148,7 @@ var loadJSON = function() {
     return [
 		{
 			"question": {
-				"text": "2 + 2 ="
+				"text": "<h2>2 + 2 = </h2>"
 			},
 			"answerLeft": {
 				"text": "3"
@@ -162,7 +164,7 @@ var loadJSON = function() {
 				"text": "how much wood can a wood chucker chuck if a wood chucker can chuck wood?"
 			},
 			"answerLeft": {
-				"text": "I have no clue",
+				"text": "<strong>I have no clue</strong>",
 				"answer": "true"
 			},
 			"answerRight": {
@@ -172,7 +174,7 @@ var loadJSON = function() {
 		},
 		{
 			"question": {
-				"text": "2 + 3 ="
+				"text": "<h1>2 + 3 = </h1>"
 			},
 			"answerLeft": {
 				"text": "2"
