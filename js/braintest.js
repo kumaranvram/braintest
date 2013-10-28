@@ -3,22 +3,18 @@ var randomizedQuestionIndices;
 var currentIndex;
 var currentQuestion;
 var score;
+var controller;
+var paused = true;
+var gameOver = false;
 
 $(document).ready(function() {
-	$('#answerLeft').click(function() {
-		answerLeftClicked();
-	});
-
-	$('#answerRight').click(function() {
-		answerRightClicked();
-	});
-
-	score = 0;
-	currentIndex = 0;
+	
+	initializeLeapMotion();
+	hookEventsForAnswers();
+	
 	questions = loadJSON();
+
 	if(questions) {
-		randomizedQuestionIndices = randomizeQuestions(questions.length);
-		currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
 		startGame();
 	}
 });	
@@ -35,19 +31,28 @@ var randomizeQuestions = function (length) {
 }
 
 var startGame = function() {
+	score = 0;
+	currentIndex = 0;
+	gameOver = false;
+	paused = false;
+	randomizedQuestionIndices = randomizeQuestions(questions.length);
+	currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
 	setCurrentQuestionAndAnswerContents();
 }
 
 var nextQuestion = function() {
-	console.log("Old currentIndex: " + currentIndex)
 	currentIndex++;
-	console.log("Old currentIndex: " + currentIndex)
-	if(currentIndex >= questions.length) {
+	if(currentIndex >= questions.length && !gameOver) {
 		alert("Game over");
+		gameOver = true;
 		return;
 	}
-	currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
-	setCurrentQuestionAndAnswerContents();
+
+	setTimeout(function() {
+		currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
+		setCurrentQuestionAndAnswerContents();
+		paused = false;
+	}, 500);
 }
 
 var setCurrentQuestionAndAnswerContents = function() {
@@ -73,24 +78,68 @@ var setCurrentQuestionAndAnswerContents = function() {
 
 var answerLeftClicked  = function() {
 	console.log("Left div clicked");
-	if(currentQuestion.answerLeft.answer === "true") {
+	if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
+		updateScore();
 	}
-	updateScore();
 	nextQuestion();
 }
 
 var answerRightClicked = function() {
 	console.log("right Div clicked");
-	if(currentQuestion.answerRight.answer === "true") {
+	if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
+		updateScore();
 	}	
-	updateScore();
 	nextQuestion();
 }
 
 var updateScore = function () {
 	$('#score').text('Your score is: ' + score + '/' + questions.length);
+}
+
+var initializeLeapMotion = function() {
+	controller = new Leap.Controller({enableGestures: true});
+
+	controller.on('gesture', function (gesture){
+	    if(gesture.type === 'swipe'){
+	        handleSwipe(gesture);
+	    }
+	});
+
+	controller.connect();
+}
+
+var hookEventsForAnswers = function (){ 
+	$('#answerLeft').click(function() {
+		answerLeftClicked();
+	});
+
+	$('#answerRight').click(function() {
+		answerRightClicked();
+	});
+}
+
+var handleSwipe = function (swipe) {
+    var startFrameID;
+    if(swipe.state === 'stop' && !paused) {
+        if (isRightSwipe(swipe)){            
+            console.log("Swipe right" + new Date().getTime());            
+            paused = true;
+            answerRightClicked();
+
+        }
+        else {
+     	   console.log("Swipe left" + new Date().getTime());
+        	controller.connection.gesturesEnabled = false;
+        	paused = true;
+        	answerLeftClicked();              
+	    }
+    }	
+}
+
+function countdownComplete(){
+	alert("yo");
 }
 
 var loadJSON = function() {
@@ -137,6 +186,6 @@ var loadJSON = function() {
 	];
 }
 
-function countdownComplete(){
-	alert("yo");
+var isRightSwipe = function (swipe) {
+	return swipe.direction[0] > 0;
 }
