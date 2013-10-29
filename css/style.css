@@ -1,3 +1,7 @@
+body {
+	background-image: url('../img/bg_pattern.png') repeat-x repeat-y;
+}
+
 #question{
 	height: 400px;
 	width: 800px;

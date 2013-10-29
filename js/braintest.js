@@ -10,7 +10,7 @@ var gameOver = false;
 $(document).ready(function() {
 	
 	initializeLeapMotion();
-	hookEventsForAnswers();
+	hookEvents();
 	
 	questions = loadJSON();
 
@@ -112,7 +112,7 @@ var initializeLeapMotion = function() {
 	controller.connect();
 }
 
-var hookEventsForAnswers = function (){ 
+var hookEvents = function (){ 
 	$('#answerLeft').click(function() {
 		answerLeftClicked();
 	});
@@ -120,20 +120,21 @@ var hookEventsForAnswers = function (){
 	$('#answerRight').click(function() {
 		answerRightClicked();
 	});
+
+	$('#resetGame').click(function() {
+		location.reload();
+	});	
 }
 
 var handleSwipe = function (swipe) {
     var startFrameID;
     if(swipe.state === 'stop' && !paused) {
         if (isRightSwipe(swipe)){            
-            console.log("Swipe right" + new Date().getTime());            
             paused = true;
             answerRightClicked();
-
         }
         else {
      	   console.log("Swipe left" + new Date().getTime());
-        	controller.connection.gesturesEnabled = false;
         	paused = true;
         	answerLeftClicked();              
 	    }
@@ -142,6 +143,10 @@ var handleSwipe = function (swipe) {
 
 function countdownComplete(){
 	alert("yo");
+}
+
+var isRightSwipe = function (swipe) {
+	return swipe.direction[0] > 0;
 }
 
 var loadJSON = function() {
@@ -186,8 +191,4 @@ var loadJSON = function() {
 			"timeout": "5",
 		}
 	];
-}
-
-var isRightSwipe = function (swipe) {
-	return swipe.direction[0] > 0;
 }
