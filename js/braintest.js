@@ -80,20 +80,28 @@ var setCurrentQuestionAndAnswerContents = function() {
 
 var answerLeftClicked  = function() {
 	console.log("Left div clicked");
-	if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
+	document.getElementById("answerLeft").style.backgroundColor="#B79DCF";
+	setTimeout(function(){
+	document.getElementById("answerRight").style.backgroundColor="#FFFFFF";
+    document.getElementById("answerLeft").style.backgroundColor="#FFFFFF"; 
+		if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
 		updateScore();
 	}
-	nextQuestion();
+			nextQuestion(); },1000);
 }
 
 var answerRightClicked = function() {
 	console.log("right Div clicked");
-	if(currentQuestion.answerRight.answer === "true" && !gameOver) {
+    document.getElementById("answerRight").style.backgroundColor="#B79DCF";
+	setTimeout(function(){
+	document.getElementById("answerRight").style.backgroundColor="#FFFFFF";
+    document.getElementById("answerLeft").style.backgroundColor="#FFFFFF"; 
+		if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
 		updateScore();
-	}	
-	nextQuestion();
+	}
+			nextQuestion(); },1000);
 }
 
 var updateScore = function () {
