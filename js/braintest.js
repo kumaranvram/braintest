@@ -80,7 +80,14 @@ var setCurrentQuestionAndAnswerContents = function() {
 
 var answerLeftClicked  = function() {
 	console.log("Left div clicked");
-	document.getElementById("answerLeft").style.backgroundColor="#B79DCF";
+	if(currentQuestion.answerLeft.answer === "true")
+	{
+	document.getElementById("answerLeft").style.backgroundColor="#00FF00";
+	}
+	else
+	{
+     document.getElementById("answerLeft").style.backgroundColor="#FF0000";	
+	}
 	setTimeout(function(){
 	document.getElementById("answerRight").style.backgroundColor="#FFFFFF";
     document.getElementById("answerLeft").style.backgroundColor="#FFFFFF"; 
@@ -93,7 +100,14 @@ var answerLeftClicked  = function() {
 
 var answerRightClicked = function() {
 	console.log("right Div clicked");
-    document.getElementById("answerRight").style.backgroundColor="#B79DCF";
+    if(currentQuestion.answerRight.answer === "true")
+	{
+	document.getElementById("answerRight").style.backgroundColor="#00FF00";
+	}
+	else
+	{
+     document.getElementById("answerRight").style.backgroundColor="#FF0000";	
+	}
 	setTimeout(function(){
 	document.getElementById("answerRight").style.backgroundColor="#FFFFFF";
     document.getElementById("answerLeft").style.backgroundColor="#FFFFFF"; 
