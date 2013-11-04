@@ -109,8 +109,8 @@ var answerRightClicked = function() {
      document.getElementById("answerRight").style.backgroundColor="#FF0000";	
 	}
 	setTimeout(function(){
-	document.getElementById("answerRight").style.backgroundColor="#FFFFFF";
-    document.getElementById("answerLeft").style.backgroundColor="#FFFFFF"; 
+	document.getElementById("answerRight").style.backgroundColor='transparent';
+    document.getElementById("answerLeft").style.backgroundColor='transparent'; 
 		if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
 		updateScore();
