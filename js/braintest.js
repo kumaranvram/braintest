@@ -82,15 +82,15 @@ var answerLeftClicked  = function() {
 	console.log("Left div clicked");
 	if(currentQuestion.answerLeft.answer === "true")
 	{
-	document.getElementById("answerLeft").style.backgroundColor="#00FF00";
+	document.getElementById("light").style.backgroundColor="#00FF00";
 	}
 	else
 	{
-     document.getElementById("answerLeft").style.backgroundColor="#FF0000";	
+     document.getElementById("light").style.backgroundColor="#FF0000";	
 	}
 	setTimeout(function(){
-	document.getElementById("answerRight").style.backgroundColor="#FFFFFF";
-    document.getElementById("answerLeft").style.backgroundColor="#FFFFFF"; 
+	document.getElementById("light").style.backgroundColor="#fff000";
+    document.getElementById("light").style.backgroundColor="#fff000"; 
 		if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
 		updateScore();
@@ -102,15 +102,15 @@ var answerRightClicked = function() {
 	console.log("right Div clicked");
     if(currentQuestion.answerRight.answer === "true")
 	{
-	document.getElementById("answerRight").style.backgroundColor="#00FF00";
+	document.getElementById("light").style.backgroundColor="#00FF00";
 	}
 	else
 	{
-     document.getElementById("answerRight").style.backgroundColor="#FF0000";	
+     document.getElementById("light").style.backgroundColor="#FF0000";	
 	}
 	setTimeout(function(){
-	document.getElementById("answerRight").style.backgroundColor='transparent';
-    document.getElementById("answerLeft").style.backgroundColor='transparent'; 
+	document.getElementById("light").style.backgroundColor="#fff000";
+    document.getElementById("light").style.backgroundColor="#fff000"; 
 		if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
 		updateScore();

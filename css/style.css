@@ -10,10 +10,9 @@ html {
 	height: 300px;
 	width: 1000px;
 	text-align: center;
-	font-size: 30px;
+	font-size: 20px;
     outline: none;
-   vertical-align: middle;
-   line-height: 400px; 
+   margin-top: -5%;
    margin-left:auto;
    margin-right:auto;
    color: white;
@@ -51,9 +50,10 @@ html {
 #resetGame {
 height: 37px;
 width: 37px;  
-background-image:url(../img/board.png);
+background-image:url(../img/eraser.png);
 background-repeat:no-repeat;
 margin-top: 10px;
+   background-size:100%;
 }
 
 #handShow {
@@ -65,6 +65,16 @@ background-repeat:no-repeat;
    margin-left:auto;
    margin-right:auto;
 }
+
+#light {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background-color: #fff000;
+    margin-left: 10%;
+  }
 
 #score {
 float : right;
