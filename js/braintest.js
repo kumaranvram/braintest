@@ -6,9 +6,10 @@ var score;
 var controller;
 var paused = true;
 var gameOver = false;
+var numberOfQuestions = 2;
 
 $(document).ready(function() {
-	
+	initializeAnswerBulbs();
 	initializeLeapMotion();
 	hookEvents();
 	
@@ -27,8 +28,14 @@ var randomizeQuestions = function () {
 	randomIndices = originalIndices.sort(function() {
 	  return .5 - Math.random();
 	});
-	randomIndices = randomIndices.slice(0, 7);
+	randomIndices = randomIndices.slice(0, numberOfQuestions);
 	return randomIndices;
+}
+var initializeAnswerBulbs = function() {
+	$('#score').empty();
+	for (var i = numberOfQuestions; i >= 1; i--) {
+		$('#score').prepend('<li class="bulb">'+ i + '</li>')
+	};
 }
 
 var startGame = function() {
@@ -44,9 +51,9 @@ var startGame = function() {
 var nextQuestion = function() {
 	currentIndex++;
 	if(currentIndex >= randomIndices.length && !gameOver) {
-		alert("Game over");
 		gameOver = true;
 		$('.answer').removeClass('highlight');
+		finishGame();
 		return;
 	}
 
@@ -69,8 +76,7 @@ var setCurrentQuestionAndAnswerContents = function() {
 
 }
 
-var answerLeftClicked  = function() {
-	console.log("Left div clicked"); 
+var answerLeftClicked  = function() {	
 	if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
 		updateScore(true);
@@ -134,7 +140,6 @@ var handleSwipe = function (swipe) {
             answerRightClicked();
         }
         else {
-     	   console.log("Swipe left" + new Date().getTime());
         	paused = true;
             highlight('#answerLeft');
         	answerLeftClicked();              
@@ -470,7 +475,10 @@ var loadJSON = function() {
 
 
 var countdownComplete= function (){
+	finishGame();
+}
+
+var finishGame = function() {
 	currentQuestion = randomIndices.length;	
 	alert('Well played! Your score is ' + score + '/' + randomIndices.length);
-	location.reload();
 }
