@@ -92,7 +92,6 @@ var answerRightClicked = function() {
 }
 
 var updateScore = function (isRightAnswer) {
-	$('#score').text('Your score is: ' + score + '/' + randomIndices.length);
 	if(isRightAnswer === true) {
 		$('#score li:nth-child('+ (currentIndex + 1) + ')').addClass('green');
 	} else {
