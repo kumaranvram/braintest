@@ -14,7 +14,7 @@ $(document).ready(function() {
 	
 	questions = loadJSON();
 
-	if(questions) {
+	if(questions() && paused && isRightSwipe()) {
 		startGame();
 	}
 });	
@@ -461,5 +461,7 @@ var loadJSON = function() {
 
 
 var countdownComplete= function (){
-  	alert("yo");
+	currentQuestion = randomIndices.length;	
+	alert('Well played! Your score is ' + score + '/' + randomIndices.length);
+	location.reload();
 }

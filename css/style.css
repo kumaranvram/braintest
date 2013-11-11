@@ -131,4 +131,11 @@ background-repeat:no-repeat;
   float: right;
 }
 
+#countdown {
+  top: 300px;
+  right: 250px;
+  position: absolute;
+  height: 50px;
+}
+
 
