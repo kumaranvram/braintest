@@ -8,52 +8,10 @@ html {
 }
 
 
-#button{
-   text-align: right;
-   margin-right: 5%;
-}
-
-#resetGame {
-height: 37px;
-width: 37px;  
-background-image:url(../img/eraser.png);
-background-repeat:no-repeat;
-margin-top: -20px;
-   background-size:100%;
-}
-
-#handShow {
-height: 100px;
-width: 400px;  
-background-image:url(../img/hand.png);
-background-repeat:no-repeat;
-   background-size:100%;
-   margin-left:auto;
-   margin-right:auto;
-}
-
-#score {
-  float : right;
-  display: inline-block;
-	height: 50px;
-	width: 150px;
-	left: 500px;
-	border: 1px solid;
-	font-size: large;
-	color: white;
-	background: none;
-  border: 1px solid #DDD;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #DDD inset;
-  color: #666;
-  padding: 5px 10px;
-  outline: none;
-  margin-right: 100px;
-}
 #header {
 	display:block;
 	background: url(../img/logo.png) no-repeat scroll 0 0 transparent; 
-    text-indent: -6000px;
+  text-indent: -6000px;
 	width: 525px;
 	height: 350px;
 	position: absolute;
@@ -72,7 +30,18 @@ background-repeat:no-repeat;
 	left: -40px;
 }
 
-#question{
+#twlogo {
+  display:block;
+  background: url(../img/tw.png) no-repeat scroll 0 0 transparent; 
+  text-indent: -6000px;
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  top: 60px;
+  right: 100px;
+}
+
+#question {
   max-height: 200px;
   width: 1000px;
   background: #F7AD2A;
@@ -131,11 +100,42 @@ background-repeat:no-repeat;
   float: right;
 }
 
-#countdown {
+#countdown {  
   top: 300px;
   right: 250px;
   position: absolute;
-  height: 50px;
+  height: 90px;  
 }
 
 
+#score {
+  list-style-type: none;
+  position: absolute;
+  top: 150px;
+  right: 50px;
+}
+
+.bulb {
+  background: #bbb;
+  margin-bottom: 30px;
+  height: 50px;
+  width: 50px;
+  border: 5px solid #eee;
+  border-radius: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  font-family: Helvetica, Arial, Sans;
+  font-weight: bold;
+  text-align: center;
+  -webkit-border-radius: 50px;
+  box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.bulb.green {
+  background: #090;
+}
+
+.bulb.red {
+  background: #f00;
+}

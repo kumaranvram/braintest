@@ -73,7 +73,10 @@ var answerLeftClicked  = function() {
 	console.log("Left div clicked"); 
 	if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
-		updateScore();
+		updateScore(true);
+	}
+	else {
+		updateScore(false);
 	}
 	nextQuestion();
 }
@@ -81,13 +84,20 @@ var answerLeftClicked  = function() {
 var answerRightClicked = function() {    
 	if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
-		updateScore();
+		updateScore(true);
+	} else {
+		updateScore(false);
 	}
 	nextQuestion(); 
 }
 
-var updateScore = function () {
+var updateScore = function (isRightAnswer) {
 	$('#score').text('Your score is: ' + score + '/' + randomIndices.length);
+	if(isRightAnswer === true) {
+		$('#score li:nth-child('+ (currentIndex + 1) + ')').addClass('green');
+	} else {
+		$('#score li:nth-child('+ (currentIndex + 1) + ')').addClass('red');
+	}
 }
 
 var initializeLeapMotion = function() {
