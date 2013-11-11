@@ -19,14 +19,15 @@ $(document).ready(function() {
 	}
 });	
 
-var randomizeQuestions = function (length) {
+var randomizeQuestions = function () {
 	var originalIndices = [];
-	for (var i = 0; i < length; i++) {
+	for (var i = 0; i < questions.length; i++) {
 		originalIndices.push(i);
 	};
 	randomIndices = originalIndices.sort(function() {
 	  return .5 - Math.random();
 	});
+	randomIndices = randomIndices.slice(0, 7);
 	return randomIndices;
 }
 
@@ -35,20 +36,22 @@ var startGame = function() {
 	currentIndex = 0;
 	gameOver = false;
 	paused = false;
-	randomizedQuestionIndices = randomizeQuestions(questions.length);
+	randomizedQuestionIndices = randomizeQuestions();
 	currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
 	setCurrentQuestionAndAnswerContents();
 }
 
 var nextQuestion = function() {
 	currentIndex++;
-	if(currentIndex >= questions.length && !gameOver) {
+	if(currentIndex >= randomIndices.length && !gameOver) {
 		alert("Game over");
 		gameOver = true;
+		$('.answer').removeClass('highlight');
 		return;
 	}
 
 	setTimeout(function() {
+		$('.answer').removeClass('highlight');
 		currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
 		setCurrentQuestionAndAnswerContents();
 		paused = false;
@@ -59,67 +62,32 @@ var setCurrentQuestionAndAnswerContents = function() {
 	$('#question').empty();
 	$('#answerLeft').empty();
 	$('#answerRight').empty();
-	if(currentQuestion.question.text) {		
-		$('#question').prepend( currentQuestion.question.text);
-	} else {
-		$('#question').prepend('<img id="questionImage" src="../images/"'+ currentQuestion.question.image +'" />');
-	}
+	
+	$('#question').prepend (currentQuestion.question.text);
+	$('#answerLeft').prepend (currentQuestion.answerLeft.text);
+	$('#answerRight').prepend (currentQuestion.answerRight.text);
 
-	if(currentQuestion.answerLeft.text) {		
-		$('#answerLeft').prepend( currentQuestion.answerLeft.text);
-	} else {
-		$('#answerLeft').prepend('<img id="answerLeftImage" src="../images/"'+ currentQuestion.answerLeft.image +'" />');
-	}
-
-	if(currentQuestion.answerRight.text) {		
-		$('#answerRight').prepend ( currentQuestion.answerRight.text);
-	} else {
-		$('#answerRight').prepend('<img id="answerRightImage" src="../images/"'+ currentQuestion.answerRight.image +'" />');
-	}
 }
 
 var answerLeftClicked  = function() {
-	console.log("Left div clicked");
-	if(currentQuestion.answerLeft.answer === "true")
-	{
-	document.getElementById("light").style.backgroundColor="#00FF00";
-	}
-	else
-	{
-     document.getElementById("light").style.backgroundColor="#FF0000";	
-	}
-	setTimeout(function(){
-	document.getElementById("light").style.backgroundColor="#fff000";
-    document.getElementById("light").style.backgroundColor="#fff000"; 
-		if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
+	console.log("Left div clicked"); 
+	if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
 		updateScore();
 	}
-			nextQuestion(); },1000);
+	nextQuestion();
 }
 
-var answerRightClicked = function() {
-	console.log("right Div clicked");
-    if(currentQuestion.answerRight.answer === "true")
-	{
-	document.getElementById("light").style.backgroundColor="#00FF00";
-	}
-	else
-	{
-     document.getElementById("light").style.backgroundColor="#FF0000";	
-	}
-	setTimeout(function(){
-	document.getElementById("light").style.backgroundColor="#fff000";
-    document.getElementById("light").style.backgroundColor="#fff000"; 
-		if(currentQuestion.answerRight.answer === "true" && !gameOver) {
+var answerRightClicked = function() {    
+	if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
 		updateScore();
 	}
-			nextQuestion(); },1000);
+	nextQuestion(); 
 }
 
 var updateScore = function () {
-	$('#score').text('Your score is: ' + score + '/' + questions.length);
+	$('#score').text('Your score is: ' + score + '/' + randomIndices.length);
 }
 
 var initializeLeapMotion = function() {
@@ -153,19 +121,22 @@ var handleSwipe = function (swipe) {
     if(swipe.state === 'stop' && !paused) {
         if (isRightSwipe(swipe)){            
             paused = true;
+            highlight('#answerRight');
             answerRightClicked();
         }
         else {
      	   console.log("Swipe left" + new Date().getTime());
         	paused = true;
+            highlight('#answerLeft');
         	answerLeftClicked();              
 	    }
     }	
 }
 
-function countdownComplete(){
-	alert("yo");
-}
+var highlight = function(e) {
+	$(e).addClass('highlight');
+} 
+
 
 var isRightSwipe = function (swipe) {
 	return swipe.direction[0] > 0;
@@ -175,7 +146,7 @@ var loadJSON = function() {
     return [
 		{
 			"question": {
-				"text": "<h2>2 + 2 = </h2>"
+				"text": "2 + 2 = "
 			},
 			"answerLeft": {
 				"text": "3"
@@ -201,7 +172,7 @@ var loadJSON = function() {
 		},
 		{
 			"question": {
-				"text": "<h1>2 + 3 = </h1>"
+				"text": "2 + 3 = "
 			},
 			"answerLeft": {
 				"text": "2"
@@ -486,4 +457,9 @@ var loadJSON = function() {
 		"timeout": "5",
 	}
 	];
+}
+
+
+var countdownComplete= function (){
+  	alert("yo");
 }
