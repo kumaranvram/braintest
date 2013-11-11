@@ -6,7 +6,7 @@ var score;
 var controller;
 var paused = true;
 var gameOver = false;
-var numberOfQuestions = 2;
+var numberOfQuestions = 7;
 
 $(document).ready(function() {
 	initializeAnswerBulbs();
