@@ -14,7 +14,7 @@ $(document).ready(function() {
 	
 	questions = loadJSON();
 
-	if(questions()) {
+	if(questions) {
 		startGame();
 	}
 });	
