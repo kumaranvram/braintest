@@ -160,23 +160,23 @@ var loadJSON = function() {
     return [
 		{
 			"question": {
-				"text": "2 + 2 = "
+				"text": "If 2x + 2 = 2, what is x?"
 			},
 			"answerLeft": {
-				"text": "3"
+				"text": "10"
 			},
 			"answerRight": {
-				"text": "4",
+				"text": "0",
 				"answer": "true"
 			},
 			"timeout": "5",
 		},
 		{
 			"question": {
-				"text": "how much wood can a wood chucker chuck if a wood chucker can chuck wood?"
+				"text": "how much wood can a woodchuck chuck if a woodchuck could chuck wood?"
 			},
 			"answerLeft": {
-				"text": "<strong>I have no clue</strong>",
+				"text": "I have no clue",
 				"answer": "true"
 			},
 			"answerRight": {
@@ -186,13 +186,13 @@ var loadJSON = function() {
 		},
 		{
 			"question": {
-				"text": "2 + 3 = "
+				"text": "If 2x + 3 = 9, what is x?"
 			},
 			"answerLeft": {
 				"text": "2"
 			},
 			"answerRight": {
-				"text": "5",
+				"text": "3",
 				"answer": "true"
 			},
 			"timeout": "5",
@@ -238,7 +238,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "A bottle of juice cost  Rs 10. The juice was worth Rs 9 more than the bottle.How much was the bottle worth?"
+			"text": "A bottle of juice costs Rs 10. The juice was worth Rs 9 more than the bottle. How much was the bottle worth?"
 		},
 		"answerLeft": {
 			"text": "1 rupee"
@@ -251,7 +251,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "There is a house with four walls. Each wall faces south. There is a window in each wall.A bear walks by one of the windows. What colour is the bear?"
+			"text": "There is a house with four walls. Each wall faces south. There is a window in each wall. A bear walks by one of the windows. What colour is the bear?"
 		},
 		"answerLeft": {
 			"text": "Brown"
@@ -277,7 +277,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "In the 1750's, was it legal for a man in India to marry his widow's sister?"
+			"text": "In the 1750s, was it legal for a man in India to marry his widow's sister?"
 		},
 		"answerLeft": {
 			"text": "Yes"
@@ -303,14 +303,14 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "An electric train is going 40 mph north, the wind is blowing 60 mph south. Which way is the train's smoke blowing?"
+			"text": "An electric train is going 40 mph north, the wind is blowing 60 mph south. Is the train's smoke blowing south?"
 		},
 		"answerLeft": {
-			"text": "I have no idea",
+			"text": "No",
 			"answer": "true"
 		},
 		"answerRight": {
-			"text": "North"
+			"text": "Yes"
 		},
 		"timeout": "5",
 	},
@@ -329,7 +329,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "Now that the Soviet Union has broken up, what is the world's largest country by land area?"
+			"text": "Now that the Soviet Union has broken up, which is the world's largest country by land area?"
 		},
 		"answerLeft": {
 			"text": "Russia",
@@ -381,7 +381,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "At the end of a banquet 10 people shake hands with each other. How many handshakes will there be in total?"
+			"text": "At the end of a banquet, 10 people shake hands with each other. How many handshakes will there be in total?"
 		},
 		"answerLeft": {
 			"text": "50",
@@ -423,7 +423,7 @@ var loadJSON = function() {
 			"text": "Mary's father had 5 children: <h2>Mimi, Mumu, Mama, Meme.</h2> What was the 5th child's name?"
 		},
 		"answerLeft": {
-			"text": "Mini"
+			"text": "Momo"
 		},
 		"answerRight": {
 			"text": "Mary",
@@ -433,7 +433,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "A murderer is condemned to death. He has to choose between two rooms. The first is full of raging fires, second is full of lions that haven't eaten in 3 years. Which room is safest for him?"
+			"text": "A murderer is condemned to death. He has to choose between two rooms. The first is full of raging fires, the second is full of lions that haven't eaten in 3 years. Which room is safest for him?"
 		},
 		"answerLeft": {
 			"text": "First room"
@@ -459,7 +459,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "If it take 5 minutes to dry a t-shirt on a clothes wire, how long would it take to dry 5 t-shirts?"
+			"text": "If it take 5 minutes to dry a T-shirt on a clothes wire, how long would it take to dry 5 T-shirts?"
 		},
 		"answerLeft": {
 			"text": "5 minutes",
@@ -475,7 +475,9 @@ var loadJSON = function() {
 
 
 var countdownComplete= function (){
-	finishGame();
+	if(!gameOver) {
+		finishGame();
+	}
 }
 
 var finishGame = function() {
