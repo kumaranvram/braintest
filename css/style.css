@@ -1,6 +1,6 @@
 
 html { 
-  background: url(../img/bg.jpg) no-repeat center center fixed; 
+  background: url(../img/bg1.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -42,12 +42,12 @@ html {
 }
 
 #question {
-  max-height: 200px;
+  height: 200px;
   width: 1000px;
-  background: #F7AD2A;
   position: absolute;
-  top: 400px;
-  left: 340px;
+  vertical-align: middle;
+  top: 420px;
+  left: 400px;
   padding: 40px;
   color: #222;
   font-weight: bold;
@@ -55,17 +55,13 @@ html {
   text-align: center;
   line-height: 50px;
   font-family: Helvetica, Arial, Sans;
-  border-radius: 30px;
-  border: 15px solid #FFF;
-  box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 #answer {
   max-height: 200px;
   width: 1100px;
   position: absolute;
-  top: 700px;
+  top: 780px;
   left: 340px;
   padding: 40px;
   color: #222;
@@ -76,16 +72,11 @@ html {
 }
 
 #answer .answer {
-  background: #f90;
-  width: 460px;
+  width: 400px;
   height: 50px;
   padding: 20px;
   text-align: center;
   font-family: Helvetica, Arial, Sans;
-  border-radius: 30px;
-  border: 15px solid #FFF;
-  box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 #answer .answer.highlight {
@@ -101,35 +92,35 @@ html {
 }
 
 #countdown {  
-  top: 300px;
-  right: 250px;
+  top: 200px;
+  left: 1250px;
   position: absolute;
-  height: 90px;  
+  
 }
 
 
 #score {
   list-style-type: none;
   position: absolute;
-  top: 150px;
-  right: 50px;
+  float: left;
+  top: 635px;
+  left: 480px;
 }
 
 .bulb {
+  float: left;
   background: #bbb;
-  margin-bottom: 30px;
-  height: 50px;
-  width: 50px;
+  margin-right: 60px;
+  height: 60px;
+  width: 60px;
   border: 5px solid #eee;
-  border-radius: 50px;
+  border-radius: 60px;
   font-size: 20px;
-  line-height: 50px;
+  line-height: 60px;
   font-family: Helvetica, Arial, Sans;
   font-weight: bold;
   text-align: center;
-  -webkit-border-radius: 50px;
-  box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow:  0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 50px;  
 }
 
 .bulb.green {

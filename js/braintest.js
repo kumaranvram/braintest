@@ -420,7 +420,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "Mary's father had 5 children: <h2>Mimi, Mumu, Mama, Meme.</h2> What was the 5th child's name?"
+			"text": "Mary's father had 5 children: Mimi, Mumu, Mama, Meme. What was the 5th child's name?"
 		},
 		"answerLeft": {
 			"text": "Momo"
