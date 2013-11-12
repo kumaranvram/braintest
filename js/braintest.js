@@ -9,6 +9,7 @@ var gameOver = false;
 var numberOfQuestions = 7;
 
 $(document).ready(function() {
+	$('#restart').hide();
 	initializeAnswerBulbs();
 	initializeLeapMotion();
 	hookEvents();
@@ -32,7 +33,7 @@ var randomizeQuestions = function () {
 	return randomIndices;
 }
 var initializeAnswerBulbs = function() {
-	$('#score').empty();
+	$('#score').empty().css({'width':numberOfQuestions*140});
 	for (var i = numberOfQuestions; i >= 1; i--) {
 		$('#score').prepend('<li class="bulb">'+ i + '</li>')
 	};
@@ -52,12 +53,15 @@ var nextQuestion = function() {
 	currentIndex++;
 	if(currentIndex >= randomIndices.length && !gameOver) {
 		gameOver = true;
+		$('#tick').removeClass();
 		$('.answer').removeClass('highlight');
 		finishGame();
 		return;
 	}
 
 	setTimeout(function() {
+		$('#tick').removeClass();
+
 		$('.answer').removeClass('highlight');
 		currentQuestion = questions[randomizedQuestionIndices[currentIndex]]
 		setCurrentQuestionAndAnswerContents();
@@ -79,9 +83,11 @@ var setCurrentQuestionAndAnswerContents = function() {
 var answerLeftClicked  = function() {	
 	if(currentQuestion.answerLeft.answer === "true" && !gameOver) {
 		score++;
+		showAnswerAnimation(true);
 		updateScore(true);
 	}
 	else {
+		showAnswerAnimation(false);
 		updateScore(false);
 	}
 	nextQuestion();
@@ -90,12 +96,23 @@ var answerLeftClicked  = function() {
 var answerRightClicked = function() {    
 	if(currentQuestion.answerRight.answer === "true" && !gameOver) {
 		score++;
+		showAnswerAnimation(true);
 		updateScore(true);
 	} else {
+		showAnswerAnimation(false);
+
 		updateScore(false);
 	}
 	nextQuestion(); 
 }
+
+var showAnswerAnimation = function (isRightAnswer) {	
+	if(isRightAnswer === true)
+		$('#tick').removeClass('wrong').addClass('right');	
+	else
+		$('#tick').removeClass('right').addClass('wrong');	
+}
+
 
 var updateScore = function (isRightAnswer) {
 	if(isRightAnswer === true) {
@@ -126,7 +143,7 @@ var hookEvents = function (){
 		answerRightClicked();
 	});
 
-	$('#resetGame').click(function() {
+	$('#restart').click(function() {
 		location.reload();
 	});	
 }
@@ -150,7 +167,6 @@ var handleSwipe = function (swipe) {
 var highlight = function(e) {
 	$(e).addClass('highlight');
 } 
-
 
 var isRightSwipe = function (swipe) {
 	return swipe.direction[0] > 0;
@@ -420,7 +436,7 @@ var loadJSON = function() {
 	},
 	{
 		"question": {
-			"text": "Mary's father had 5 children: <h2>Mimi, Mumu, Mama, Meme.</h2> What was the 5th child's name?"
+			"text": "Mary's father had 5 children...<br/>Mimi, Mumu, Mama, Meme.<br/> What was the 5th child's name?"
 		},
 		"answerLeft": {
 			"text": "Momo"
@@ -473,7 +489,6 @@ var loadJSON = function() {
 	];
 }
 
-
 var countdownComplete= function (){
 	if(!gameOver) {
 		finishGame();
@@ -482,5 +497,8 @@ var countdownComplete= function (){
 
 var finishGame = function() {
 	currentQuestion = randomIndices.length;	
-	alert('Well played! Your score is ' + score + '/' + randomIndices.length);
+	$('#question, #answer, #countdown').hide();
+	$('#game-over').addClass('animate');
+	$('#restart').show();
+	// alert('Well played! Your score is ' + score + '/' + randomIndices.length);
 }
