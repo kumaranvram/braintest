@@ -500,5 +500,4 @@ var finishGame = function() {
 	$('#question, #answer, #countdown').hide();
 	$('#game-over').addClass('animate');
 	$('#restart').show();
-	// alert('Well played! Your score is ' + score + '/' + randomIndices.length);
 }

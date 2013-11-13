@@ -132,7 +132,7 @@ html {
 #countdown {  
   margin: auto;
   position: absolute;
-  top: -400px; left: 0; bottom: 0; right: -900px;  
+  top: -400px; left: 0; bottom: 0; right: -800px;  
   z-index: 1000;
   padding: 10px;
   border: 12px solid #FFF;
@@ -223,17 +223,30 @@ html {
 }
 
 #game-over {
+  font-family: Helvetica, Sans;
   font-size: 60px;
+  line-height: 100px;
+  font-family: Helvetica, Arial, Sans;
+  font-weight: bold;
+  text-align: center;
   color: #FFF;
   display: none;
 
-  width: 300px;
+  width: 640px;
   height: 100px;
 
   z-index: 1600;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+}
+
+#game-over.animate  {
+  display: block;
+  animation: zoomout 2s, opacity 2s; 
+  animation-iteration-count: 1;
+  -webkit-animation: zoomout 2s, opacity 2s; /* Safari % Chrome */
+  -webkit-animation-iteration-count: 1; 
 }
 
 #tick {
@@ -262,14 +275,6 @@ html {
   animation-iteration-count: infinite;
   -webkit-animation: zoomout 2s, opacity 2s; /* Safari % Chrome */
   -webkit-animation-iteration-count: infinite; 
-}
-
-#game-over.animate  {
-  display: block;
-  animation: zoomout 2s, opacity 2s; 
-  animation-iteration-count: 1;
-  -webkit-animation: zoomout 2s, opacity 2s; /* Safari % Chrome */
-  -webkit-animation-iteration-count: 1; 
 }
 
 #tick.right {
@@ -301,7 +306,7 @@ html {
   background: rgb(28, 184, 65); /* this is a green */
   margin: auto;
   position: absolute;
-  top: 90px; left: 0; bottom: 0; right: 0;
+  top: 0; left: 0; bottom: -600px; right: 0;
   font-weight: bold;
   font-size: 30px;
   font-family: Helvetica, Arial, Sans;
